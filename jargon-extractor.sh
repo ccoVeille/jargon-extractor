@@ -32,7 +32,7 @@ cleaned_candidate_file="$workdir/cleaned_candidate_words.txt"
 
 if [ ! -f "$analyzed_files" ]; then
     echo "Looking for markdown files ..."
-    fd -t f -0 '\.(md)' $@ > "$analyzed_files.tmp"
+    fd -t f -0 '\.(md)' "$@" > "$analyzed_files.tmp"
     mv "$analyzed_files.tmp" "$analyzed_files"
 fi
 
@@ -65,8 +65,7 @@ if [ ! -f "$candidate_file" ]; then
     echo > "$candidate_file.tmp"
 
     i=0
-    for word in $(cat "$uppercase_words_file"); do
-
+    while read -r word; do
         i=$((i + 1))
         if [ $((i % 200)) -eq 0 ]; then
             echo -n "Processed $i/$nbCandidate words: "
@@ -79,7 +78,7 @@ if [ ! -f "$candidate_file" ]; then
         if [ "$count" -gt 1 ]; then
             awk '{sum += $1; words = (words ? words " " $2 : $2)} END {print sum, words}' <<< "$matches" >> "$candidate_file.tmp"
         fi
-    done
+    done < "$uppercase_words_file"
 
     sort -rn "$candidate_file.tmp" > "$candidate_file"
 fi
