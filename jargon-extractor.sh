@@ -81,6 +81,7 @@ if [ ! -f "$candidate_file" ]; then
     done < "$uppercase_words_file"
 
     sort -rn "$candidate_file.tmp" > "$candidate_file"
+    rm "$candidate_file.tmp"
 fi
 wc -l "$candidate_file" | awk '{print $1 " candidate words found"}'
 
