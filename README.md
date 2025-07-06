@@ -20,7 +20,7 @@ Simply launch
 
 ## Project structure
 
-- [jason-extractor.sh](jason-extractor.sh) - the tool itself
+- [jargon-extractor.sh](jargon-extractor.sh) - the tool itself
 - [known.txt](known.txt) - the list of words that were identified manually as valid words
 - [ignore.txt](ignore.txt) - the list of words that could be considered as stop words or noise
 
