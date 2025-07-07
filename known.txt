@@ -26,6 +26,7 @@ ASCII
 AsciiDoc
 AST
 AWS
+Azure
 BadgerDB
 Bash
 Bitbucket
@@ -35,7 +36,9 @@ BMW
 Browserify
 BrowserStack
 BSD
+BSON
 BSSID
+BST
 Btrfs
 CalDAV
 camelCase
@@ -45,6 +48,7 @@ CD-RW
 CDN
 CentOS
 ChatGPT
+CIDR
 CircleCI
 CLI
 ClickHouse
@@ -107,7 +111,9 @@ EOL
 EPUB
 ESLint
 ESSID
+EST
 ETag
+Excel
 exFAT
 Ext3
 Ext4
@@ -183,6 +189,7 @@ HTMX
 Hz
 I10n
 i18n
+IANA
 ICANN
 ICMP
 IDE
@@ -206,8 +213,10 @@ IPv4
 IPv6
 ISBN
 ISO
+IST
 iTunes
 Jaeger
+Java
 JavaScript
 Jekyll
 Jenkins
@@ -247,6 +256,8 @@ MailChimp
 Makefile
 MariaDB
 Markdown
+MDT
+MFA
 Microsoft
 MirBSD
 MIT
@@ -259,9 +270,11 @@ Mozilla
 MP3
 MP4
 MPEG
+MPL-2
 MQTT
 MVC
 MVP
+MyRocks
 MySQL
 NaN
 NATS
@@ -325,6 +338,7 @@ PayPal
 PCRE
 PCRE1
 PCRE2
+PCT
 PDF
 Percona
 Perl
@@ -332,6 +346,7 @@ PGP
 PhantomJS
 PHP
 Pinterest
+PIPL
 PKCS #12
 PlayStation
 PNG
@@ -348,6 +363,7 @@ PubSub
 PulseAudio
 Pwned
 PyPI
+PyTorch
 PyYAML
 RabbitMQ
 Rackspace
@@ -386,6 +402,7 @@ SemVer
 SEO
 SFTP
 SLA
+Slack
 SMTP
 SOAP
 SolidJS
@@ -495,6 +512,7 @@ Wikitext
 Windows
 WMA
 WordPress
+WSL
 WWDC
 X.509
 Xcode
@@ -504,6 +522,7 @@ XFS
 XHTML
 XML
 XMLHttpRequest
+XSL
 XSLT
 XSS
 XtraBackup
