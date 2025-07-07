@@ -49,8 +49,17 @@ tr -cd '\0' <"$analyzed_files" | wc -c | awk '{printf "%\047.0f Markdown files f
 
 if [ ! -f "$words_file" ]; then
 	echo "Computing words used in these files..."
-	cat "$analyzed_files" | xargs -0 -r -I X grep -I -oE '\w+' X >"$words_file.tmp"
-	mv "$words_file.tmp" "$words_file"
+	# simple words, we are not using \w on purpose to avoid matching underscore
+	cat "$analyzed_files" | xargs -0 -r -I X grep -I -oE '[A-Za-z0-9]+' X >"$words_file.tmp"
+	# add words separated by dashes
+	cat "$analyzed_files" | xargs -0 -r -I X grep -I -oE '[A-Za-z0-9]+[-]+[A-Za-z0-9]*' X >>"$words_file.tmp"
+	# add words ending with plus
+	cat "$analyzed_files" | xargs -0 -r -I X grep -I -oE '[A-Za-z0-9]+[+]+' X >>"$words_file.tmp"
+	# add words separated by underscores but not a trailing one
+	cat "$analyzed_files" | xargs -0 -r -I X grep -I -oE '[A-Za-z0-9]+[_-]+[A-Za-z0-9]+' X >>"$words_file.tmp"
+
+	cat "$words_file.tmp" >"$words_file"
+	rm "$words_file.tmp"
 fi
 
 wc -l "$words_file" | awk '{printf "%\047.0f words found\n", $1}'
@@ -81,7 +90,13 @@ if [ ! -f "$candidate_file" ]; then
 			wc -l "$candidate_file.tmp" | awk '{print $1 " candidates found"}'
 		fi
 
-		matches=$(grep -i -w "$word" "$words_file" | sort | uniq -c)
+		# Escape dashes and underscores for grep
+		escaped_word=$(echo "$word" | sed 's/-/\\-\\?/g;s/_/\\_\\?/g;s/+/\\+\\?/g')
+
+		# Use grep to find all occurrences of the word in the words file, ignoring case
+		matches=$(grep -i "^$escaped_word$" "$words_file" | sort | uniq -c)
+
+		# Count the number of matches
 		count=$(echo "$matches" | wc -l)
 		# Here we are assuming that a candidate word is one that appears with more than one way to write it
 		if [ "$count" -gt 1 ]; then
