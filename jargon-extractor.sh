@@ -102,7 +102,7 @@ if [ ! -f "$candidate_file" ]; then
 
 		# Count the number of matches
 		count=$(echo "$matches" | wc -l)
-		# Here we are assuming that a candidate word is one that appears with more than one way to write it
+		# Hypothesis: a jargon word is used with multiple case variations, so we only consider it if it appears more than one variation
 		if [ "$count" -gt 1 ]; then
 			awk '{sum += $1; words = (words ? words " " $2 : $2)} END {print sum, words}' <<<"$matches" >>"$candidate_file.tmp"
 		fi
@@ -143,7 +143,7 @@ mv "$cleaned_candidate_file.tmp" "$cleaned_candidate_file"
 
 wc -l "$cleaned_candidate_file" | awk '{printf "%\047.0f candidate remains\n", $1}'
 
-echo "Removing words that are in the ignore file..."
+echo "Removing words that are in the ignore.txt file..."
 grep -v -w -f "$ignored_words_file" "$cleaned_candidate_file" >"$cleaned_candidate_file.tmp"
 echo "# This file contains candidate words with their counts, excluding known and ignored words" >"$cleaned_candidate_file"
 cat "$cleaned_candidate_file.tmp" >>"$cleaned_candidate_file"
