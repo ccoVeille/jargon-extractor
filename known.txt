@@ -14,6 +14,7 @@ AMQP
 Android
 AngularJS
 Ansible
+APAC
 API
 APIs
 AppKit
@@ -96,9 +97,11 @@ DVD-RW
 DVD+R
 DVD+RW
 DynamoDB
+EAN
 ECMAScript
 EditorConfig
 Elasticsearch
+EMEA
 EOF
 EOL
 EPUB
@@ -117,8 +120,6 @@ Firefox
 Flickr
 FLOSS
 Flutter
-OAuth
-OAuth 2.0
 Font Awesome
 Fork Awesome
 Fort Awesome
@@ -149,6 +150,7 @@ Golang
 Google
 GoogleCloud
 GopherCon
+GPG
 GPL
 GPT
 GPU
@@ -202,8 +204,8 @@ iPhone
 IPsec
 IPv4
 IPv6
+ISBN
 ISO
-TUI
 iTunes
 Jaeger
 JavaScript
@@ -242,20 +244,13 @@ Lua
 MacBook
 macOS
 MailChimp
-APAC
-MVC
-MVP
-GPG
-PGP
-EMEA
-EAN
-ISBN
 Makefile
 MariaDB
 Markdown
 Microsoft
 MirBSD
 MIT
+MLOps
 MochaJS
 Modernizr
 Moment.js
@@ -265,6 +260,8 @@ MP3
 MP4
 MPEG
 MQTT
+MVC
+MVP
 MySQL
 NaN
 NATS
@@ -286,6 +283,8 @@ NTFS
 Nvidia
 nvm
 NYSE
+OAuth
+OAuth 2.0
 OCR
 OK
 OLAP
@@ -296,7 +295,6 @@ OpenBSD
 OpenCensus
 OpenCollective
 OpenGL
-XSLT
 OpenID
 OpenJDK
 OpenMetrics
@@ -318,6 +316,7 @@ OSM
 OSS
 OTLP
 OVH
+OWASP
 P2P
 PaaS
 Parcel
@@ -329,6 +328,7 @@ PCRE2
 PDF
 Percona
 Perl
+PGP
 PhantomJS
 PHP
 Pinterest
@@ -433,6 +433,7 @@ TSV
 TTL
 TTLs
 TTY
+TUI
 TV
 tvOS
 Twitter
@@ -503,6 +504,7 @@ XFS
 XHTML
 XML
 XMLHttpRequest
+XSLT
 XSS
 XtraBackup
 YAML
@@ -513,5 +515,3 @@ ZFS
 Zipkin
 zlib
 Zsh
-OWASP
-MLOps
