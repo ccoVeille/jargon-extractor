@@ -15,6 +15,7 @@ Android
 AngularJS
 Ansible
 APAC
+Apache
 API
 APIs
 AppKit
@@ -444,6 +445,7 @@ TikTok
 TLS
 TOML
 TOTP
+Travis
 Trustpilot
 TSLint
 TSV

@@ -158,6 +158,7 @@ caches
 caching
 calculator
 call
+callback
 callbacks
 can
 cancel
@@ -254,6 +255,7 @@ connected
 connecting
 connection
 console
+const
 constant
 constraint
 construct
@@ -505,6 +507,7 @@ fit
 fitness
 fix
 fixed
+fixer
 fixers
 fixes
 flag
@@ -1190,6 +1193,7 @@ smart
 snapshot
 snippet
 so
+socket
 software
 solid
 some
