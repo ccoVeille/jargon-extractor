@@ -25,16 +25,19 @@ done
 hash=$(echo "$paths" | md5sum | awk '{print substr($1,1,8)}')
 
 date_str=$(date +%Y%m%d)
-workdir="/tmp/jargon-${date_str}-${hash}"
-mkdir -p "$workdir"
+work_dir="/tmp/jargon-${date_str}-${hash}"
+cache_dir="$work_dir/cache"
+mkdir -p "$work_dir" "$cache_dir"
 
-echo "Using work directory: $workdir"
+echo "Using work directory: $work_dir"
 
-analyzed_files="$workdir/analyzed_files.txt"
-words_file="$workdir/words.txt"
-uppercase_words_file="$workdir/uppercase_words.txt"
-candidate_file="$workdir/candidate_words.txt"
-cleaned_candidate_file="$workdir/cleaned_candidate_words.txt"
+analyzed_files="$cache_dir/analyzed_files.txt"
+words_file="$cache_dir/all_words.txt"
+uppercase_words_file="$cache_dir/uppercase_words.txt"
+candidate_file="$cache_dir/candidate_words.txt"
+cleaned_candidate_file="$work_dir/candidate_words.txt"
+known_volume_file="$work_dir/known_words.txt"
+ignored_volume_file="$work_dir/ignored_words.txt"
 
 if [ ! -f "$analyzed_files" ]; then
 	echo "Looking for markdown files ..."
