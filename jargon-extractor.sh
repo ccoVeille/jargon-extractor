@@ -84,7 +84,7 @@ nbCandidate=$(wc -l <"$uppercase_words_file")
 
 if [ ! -f "$candidate_file" ]; then
 	echo "Computing candidate words..."
-	echo >"$candidate_file.tmp"
+	echo -n "" >"$candidate_file.tmp"
 
 	i=0
 	while read -r word; do
