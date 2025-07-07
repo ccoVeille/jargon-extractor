@@ -1,5 +1,11 @@
 #!/bin/bash
 
+if [ $# -eq 0 ]; then
+	echo "Usage: $0 <directory-or-file> [more-directories-or-files...]"
+	echo "Scans markdown files for jargon candidates based on word capitalization."
+	exit 1
+fi
+
 # Ensure required commands are installed
 for cmd in fd awk grep wc xargs tr md5sum; do
 	if ! command -v "$cmd" &>/dev/null; then
