@@ -58,7 +58,8 @@ if [ ! -f "$words_file" ]; then
 	# add words separated by underscores but not a trailing one
 	cat "$analyzed_files" | xargs -0 -r -I X grep -I -oE '[A-Za-z0-9]+[_-]+[A-Za-z0-9]+' X >>"$words_file.tmp"
 
-	cat "$words_file.tmp" >"$words_file"
+	echo "# This file contains all the words found in the markdown files" > "$words_file"
+	cat "$words_file.tmp" >>"$words_file"
 	rm "$words_file.tmp"
 fi
 
@@ -70,8 +71,11 @@ awk '{words[$0]++} END {printf "%\047.0f unique words found\n", length(words)}' 
 if [ ! -f "$uppercase_words_file" ]; then
 	echo "Computing words with uppercase letters..."
 
+	echo "# This file contains words with at least 2 uppercase letters" > "$uppercase_words_file.tmp"
+
 	# This pattern matches words that contain at least 2 uppercase letters
-	awk '/[A-Z].*[A-Z]/ { word=tolower($0); if (!seen[word]++) print $0 }' "$words_file" >"$uppercase_words_file.tmp"
+	# Here we are doing the strong hypothesis that a jargon word has at least 2 uppercase letters
+	awk '/[A-Z].*[A-Z]/ { word=tolower($0); if (!seen[word]++) print $0 }' "$words_file" >>"$uppercase_words_file.tmp"
 	mv "$uppercase_words_file.tmp" "$uppercase_words_file"
 fi
 
@@ -104,10 +108,12 @@ if [ ! -f "$candidate_file" ]; then
 		fi
 	done <"$uppercase_words_file"
 
-	sort -rn "$candidate_file.tmp" >"$candidate_file"
+	echo "# This file contains candidate words with their counts" >"$candidate_file"
+	sort -rn "$candidate_file.tmp" >> "$candidate_file"
 	rm "$candidate_file.tmp"
 fi
-wc -l "$candidate_file" | awk '{printf "%\047.0f candidate words found\n", $1}'
+egrep -v '^#' "$candidate_file" > "$candidate_file.tmp"
+wc -l "$candidate_file.tmp" | awk '{printf "%\047.0f candidate words found\n", $1}'
 
 ignored_words_file="$script/ignore.txt"
 if [ ! -f "$ignored_words_file" ]; then
@@ -139,9 +145,9 @@ wc -l "$cleaned_candidate_file" | awk '{printf "%\047.0f candidate remains\n", $
 
 echo "Removing words that are in the ignore file..."
 grep -v -w -f "$ignored_words_file" "$cleaned_candidate_file" >"$cleaned_candidate_file.tmp"
-mv "$cleaned_candidate_file.tmp" "$cleaned_candidate_file"
-
-wc -l "$cleaned_candidate_file" | awk '{print $1 " candidate remains"}'
+echo "# This file contains candidate words with their counts, excluding known and ignored words" >"$cleaned_candidate_file"
+cat "$cleaned_candidate_file.tmp" >>"$cleaned_candidate_file"
+rm "$cleaned_candidate_file.tmp" "$candidate_file.tmp"
 
 echo "The following file contains the candidate words with their counts:"
 wc --total=never -l "$work_dir"/*.txt | awk '{printf "%s: %\047.0f\n", $2, $1}'
