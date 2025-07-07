@@ -40,7 +40,7 @@ known_volume_file="$work_dir/known_words.txt"
 ignored_volume_file="$work_dir/ignored_words.txt"
 
 if [ ! -f "$analyzed_files" ]; then
-	echo "Looking for markdown files ..."
+	echo "Looking for Markdown files ..."
 	fd -t f -0 '\.(md)' "$@" >"$analyzed_files.tmp"
 	mv "$analyzed_files.tmp" "$analyzed_files"
 fi
@@ -79,7 +79,7 @@ if [ ! -f "$uppercase_words_file" ]; then
 	mv "$uppercase_words_file.tmp" "$uppercase_words_file"
 fi
 
-wc -l "$words_file" | awk '{printf "%\047.0f words with at least 2 uppercase letters found\n", $1}'
+wc -l "$uppercase_words_file" | awk '{printf "%\047.0f words with at least 2 uppercase letters found\n", $1}'
 nbCandidate=$(wc -l <"$uppercase_words_file")
 
 if [ ! -f "$candidate_file" ]; then
@@ -90,8 +90,7 @@ if [ ! -f "$candidate_file" ]; then
 	while read -r word; do
 		i=$((i + 1))
 		if [ $((i % 200)) -eq 0 ]; then
-			echo -n "Processed $i/$nbCandidate words: "
-			wc -l "$candidate_file.tmp" | awk '{print $1 " candidates found"}'
+			wc -l "$candidate_file.tmp" | awk -v i="$i" -v nb="$nbCandidate" '{printf "Processed %\047.0f/%\047.0f: %\047.0f candidates found\n", i, nb, $1}'
 		fi
 
 		# Escape dashes and underscores for grep
