@@ -5,7 +5,7 @@
 This project is about extracting words from a large corpus.
 The corpus could be a simple project or dozens of project.
 
-The extractor looks for words that are used in Markdown files.
+The extractor looks for words that are used in documentation files (.md, .mdx, .rst …)
 Only the words that are used with different cases are kept.
 The idea behind this is to look for words that are written with the wrong case.
 
@@ -27,8 +27,8 @@ $ ./jargon-extractor.sh <directory-or-file> [more-directories-or-files...]
 ```console
 $ ./jargon-extractor.sh ~/dev
 Using work directory: /tmp/jargon-20250707-cadd1674
-Looking for Markdown files ...
-7,938 Markdown files found
+Looking for documentation files ...
+7,938 documentation files found
 Computing words used in these files...
 6,081,968 words found
 161,095 unique words found
@@ -132,17 +132,17 @@ So these words could be reused in other projects like:
 
 The idea is to be language agnostic, shell is everywhere, it works.
 
-## Why only looking at Markdown files ?
+## Why only looking at documentation files ?
 
-All files could be used, but then it would bring a lot of noise as code commonly use camelCase, PascalCase, ... for identifiers.
-
-Markdown files are written by human, they content less code, so less noise.
-Also, Markdown are commonly available no matter the project. They content technical terms.
+Markdown (.md or .mdx) and reStructuredText (.rst) files are written by human, they content less code, so less noise.
+Also, documentation files are commonly available no matter the project. They content technical terms.
 These are the terms that jargon-extractor is looking for.
+
+All files could be used, but then it would bring a lot of noise as code commonly use camelCase, PascalCase, … for identifiers.
 
 ## What is the code about ?
 
-- Look for Markdown files.
+- Look for documentation files.
 - Extract all words in them by using simple regexp and store it in a cache.
 - Look for words that are written with different cases.
 - Compute how often a word is used no matter the cases used.
