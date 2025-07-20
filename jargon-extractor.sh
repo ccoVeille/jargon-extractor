@@ -2,7 +2,7 @@
 
 if [ $# -eq 0 ]; then
 	echo "Usage: $0 <directory-or-file> [more-directories-or-files...]"
-	echo "Scans markdown files for jargon candidates based on word capitalization."
+	echo "Scans documentation files for jargon candidates based on word capitalization."
 	exit 1
 fi
 
@@ -40,12 +40,12 @@ known_volume_file="$work_dir/known_words.txt"
 ignored_volume_file="$work_dir/ignored_words.txt"
 
 if [ ! -f "$analyzed_files" ]; then
-	echo "Looking for Markdown files ..."
-	fd -t f -0 '\.(md)' "$@" >"$analyzed_files.tmp"
+	echo "Looking for documentation files ..."
+	fd -t f -0 '\.(md|mdx|rst)$' "$@" >"$analyzed_files.tmp"
 	mv "$analyzed_files.tmp" "$analyzed_files"
 fi
 
-tr -cd '\0' <"$analyzed_files" | wc -c | awk '{printf "%\047.0f Markdown files found\n", $1}'
+tr -cd '\0' <"$analyzed_files" | wc -c | awk '{printf "%\047.0f documentation files found\n", $1}'
 
 if [ ! -f "$words_file" ]; then
 	echo "Computing words used in these files..."
