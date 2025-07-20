@@ -127,6 +127,7 @@ So these words could be reused in other projects like:
 - [jargonLint](https://github.com/jargonLint/jargonLint)
 - [cspell-dicts](https://github.com/streetsidesoftware/cspell-dicts/)
 - [textlint-rule-terminology](https://github.com/sapegin/textlint-rule-terminology)
+- [harper](https://github.com/Automattic/harper/)
 
 ## Why using shell only ?
 
