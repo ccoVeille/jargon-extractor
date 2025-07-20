@@ -65,15 +65,15 @@ fi
 awk '{sum += $0} END {print sum}' "$words_file" | awk '{printf "%\047.0f words found\n", $1}'
 
 if [ ! -f "$uppercase_words_file" ]; then
-	echo "Computing words with uppercase letters..."
+	echo "Computing words with uppercase letter..."
 
-	echo "# This file contains words with at least 2 uppercase letters" > "$uppercase_words_file.tmp"
+	echo "# This file contains words with at least one uppercase letter" > "$uppercase_words_file.tmp"
 
-	awk '{ word=tolower($2); c[word] += $1 ; if ($2 ~ /[A-Z].*[A-Z]/ && !seen[word]) seen[word] = $2 } ; END { for (w in seen) print c[w], seen[w] }' "$words_file" | sort -rn > "$uppercase_words_file.tmp"
+	awk '{ word=tolower($2); c[word] += $1 ; if ($2 ~ /[A-Z]/ && !seen[word]) seen[word] = $2 } ; END { for (w in seen) print c[w], seen[w] }' "$words_file" | sort -rn > "$uppercase_words_file.tmp"
 	mv "$uppercase_words_file.tmp" "$uppercase_words_file"
 fi
 
-wc -l "$uppercase_words_file" | awk '{printf "%\047.0f words with at least 2 uppercase letters found\n", $1}'
+wc -l "$uppercase_words_file" | awk '{printf "%\047.0f words with at least one uppercase letter found\n", $1}'
 nbCandidate=$(wc -l <"$uppercase_words_file")
 
 if [ ! -f "$candidate_file" ]; then
