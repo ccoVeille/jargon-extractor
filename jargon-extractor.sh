@@ -126,24 +126,24 @@ fi
 
 echo "Computing known and ignored words volumes..."
 
-grep -w -f "$known_words_file" "$candidate_file.tmp" > "$known_volume_file.tmp"
+grep -i -w -f "$known_words_file" "$candidate_file.tmp" > "$known_volume_file.tmp"
 echo "# This file contains known words with their counts" >"$known_volume_file"
 cat "$known_volume_file.tmp" >>"$known_volume_file"
 rm "$known_volume_file.tmp"
 
-grep -w -f "$ignored_words_file" "$candidate_file.tmp" >"$ignored_volume_file.tmp"
+grep -i -w -f "$ignored_words_file" "$candidate_file.tmp" >"$ignored_volume_file.tmp"
 echo "# This file contains ignored words with their counts" >"$ignored_volume_file"
 cat "$ignored_volume_file.tmp" >>"$ignored_volume_file"
 rm "$ignored_volume_file.tmp"
 
 echo "Removing words that are in the known.txt file..."
-grep -v -w -f "$known_words_file" "$candidate_file.tmp" >"$cleaned_candidate_file.tmp"
+grep -i -v -w -f "$known_words_file" "$candidate_file.tmp" >"$cleaned_candidate_file.tmp"
 mv "$cleaned_candidate_file.tmp" "$cleaned_candidate_file"
 
 wc -l "$cleaned_candidate_file" | awk '{printf "%\047.0f candidate remains\n", $1}'
 
 echo "Removing words that are in the ignore.txt file..."
-grep -v -w -f "$ignored_words_file" "$cleaned_candidate_file" >"$cleaned_candidate_file.tmp"
+grep -i -v -w -f "$ignored_words_file" "$cleaned_candidate_file" >"$cleaned_candidate_file.tmp"
 echo "# This file contains candidate words with their counts, excluding known and ignored words" >"$cleaned_candidate_file"
 cat "$cleaned_candidate_file.tmp" >>"$cleaned_candidate_file"
 rm "$cleaned_candidate_file.tmp" "$candidate_file.tmp"
