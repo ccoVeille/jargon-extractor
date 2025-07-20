@@ -59,23 +59,17 @@ if [ ! -f "$words_file" ]; then
 	cat "$analyzed_files" | xargs -0 -r -I X grep -I -oE '[A-Za-z0-9]+[_-]+[A-Za-z0-9]+' X >>"$words_file.tmp"
 
 	echo "# This file contains all the words found in the markdown files" > "$words_file"
-	cat "$words_file.tmp" >>"$words_file"
-	rm "$words_file.tmp"
+	awk '{words[$0]++} END {for (word in words) print words[word], word}' "$words_file.tmp" > "$words_file"
 fi
 
-wc -l "$words_file" | awk '{printf "%\047.0f words found\n", $1}'
-
-# This is faster than using sort and uniq
-awk '{words[$0]++} END {printf "%\047.0f unique words found\n", length(words)}' "$words_file"
+awk '{sum += $0} END {print sum}' "$words_file" | awk '{printf "%\047.0f words found\n", $1}'
 
 if [ ! -f "$uppercase_words_file" ]; then
 	echo "Computing words with uppercase letters..."
 
 	echo "# This file contains words with at least 2 uppercase letters" > "$uppercase_words_file.tmp"
 
-	# This pattern matches words that contain at least 2 uppercase letters
-	# Here we are doing the strong hypothesis that a jargon word has at least 2 uppercase letters
-	awk '/[A-Z].*[A-Z]/ { word=tolower($0); if (!seen[word]++) print $0 }' "$words_file" >>"$uppercase_words_file.tmp"
+	awk '{ word=tolower($2); c[word] += $1 ; if ($2 ~ /[A-Z].*[A-Z]/ && !seen[word]) seen[word] = $2 } ; END { for (w in seen) print c[w], seen[w] }' "$words_file" | sort -rn > "$uppercase_words_file.tmp"
 	mv "$uppercase_words_file.tmp" "$uppercase_words_file"
 fi
 
@@ -87,19 +81,18 @@ if [ ! -f "$candidate_file" ]; then
 	echo -n "" >"$candidate_file.tmp"
 
 	i=0
-	while read -r word; do
+	while read -r line; do
 		i=$((i + 1))
-		if [ $((i % 200)) -eq 0 ]; then
+		if [ $((i % 500)) -eq 0 ]; then
 			wc -l "$candidate_file.tmp" | awk -v i="$i" -v nb="$nbCandidate" '{printf "Processed %\047.0f/%\047.0f: %\047.0f candidates found\n", i, nb, $1}'
 		fi
 
+		word=$(echo "$line" | awk '{print $2}')
 		# Escape dashes and underscores for grep
 		escaped_word=$(echo "$word" | sed 's/-/\\-\\?/g;s/_/\\_\\?/g;s/+/\\+\\?/g')
 
 		# Use grep to find all occurrences of the word in the words file, ignoring case
-		matches=$(grep -i "^$escaped_word$" "$words_file" | sort | uniq -c)
-
-		# Count the number of matches
+		matches=$(grep -i " $escaped_word$" "$words_file")
 		count=$(echo "$matches" | wc -l)
 		# Hypothesis: a jargon word is used with multiple case variations, so we only consider it if it appears more than one variation
 		if [ "$count" -gt 1 ]; then
