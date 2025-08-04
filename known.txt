@@ -6,6 +6,7 @@ ActiveMQ
 Adobe
 Adwords
 AGPL
+AI
 AirPods
 AJAX
 Algolia
@@ -36,6 +37,7 @@ Azure
 BadgerDB
 Bash
 Bitbucket
+bitcoin
 BitTorrent
 Blu-ray
 BMW
@@ -46,6 +48,7 @@ BSON
 BSSID
 BST
 Btrfs
+C
 CalDAV
 camelCase
 Cassandra
@@ -53,7 +56,11 @@ CD-ROM
 CD-RW
 CDN
 CentOS
+CERT
 ChatGPT
+Chinese
+Chrome
+CI
 CIDR
 CircleCI
 CLI
@@ -61,11 +68,14 @@ ClickHouse
 Cloudflare
 CloudFront
 CMake
+CNCF
 CockroachDB
 CodeQL
 CoffeeScript
 CommonJS
 CommonMark
+CoreDNS
+CoreOS
 CORS
 CPU
 CPUs
@@ -77,6 +87,7 @@ CSS
 CST
 CSV
 cURL
+CVE
 CVS
 Cypress
 DAB/DAB+
@@ -84,16 +95,19 @@ DAB+
 Dailymotion
 DBA
 DBAs
+DBus
 DDL
 Debian
 Deezer
 DevOps
+DevSecOps
 Dgraph
 DHCP
 DigitalOcean
 Discord
 Display Port
 Django
+DKMS
 DLQ
 DML
 DNS
@@ -102,6 +116,7 @@ Docker
 Dockerfile
 DockerHub
 DOM
+DSA
 DuckDuckGo
 DVD
 DVD-R
@@ -130,6 +145,7 @@ exFAT
 Ext3
 Ext4
 Facebook
+FastAPI
 FastHTTP
 Fastly
 FAT32
@@ -150,6 +166,7 @@ FreeBSD
 freeCodeCamp
 French
 FTP
+GCP
 GDPR
 GeForce
 GenAI
@@ -208,6 +225,7 @@ Hz
 I10n
 i18n
 IANA
+IBM
 ICANN
 ICMP
 IDE
@@ -223,7 +241,9 @@ Insomnia
 Instagram
 Intel
 IntelliJ
+IoC
 iOS
+IoT
 iPad
 iPadOS
 iPhone
@@ -259,11 +279,13 @@ Kibana
 KO
 Kotlin
 Kubernetes
+LAN
 LanguageTool
 Laravel
 LastPass
 LaTeX
 Latin
+Launchpad
 LDAP
 LGPL
 libbpf
@@ -273,6 +295,8 @@ Linux
 LLM
 LLMs
 Lodash
+LRU
+LTS
 Lua
 MacBook
 macOS
@@ -300,18 +324,23 @@ MVC
 MVP
 MyRocks
 MySQL
+Nagios
 NaN
 NATS
 NBA
 NDJSON
 NeoVim
+NetApp
 NetBSD
 Netflix
 Netlify
 NextCloud
 NFL
+NFS
+NFT
 nginx
 Nginx
+NIST
 NixOS
 Nominatim
 NoSQL
@@ -323,9 +352,11 @@ NYSE
 OAuth
 OAuth 2.0
 OCR
+OIDC
 OK
 OLAP
 OLTP
+OOM
 OpenAI
 OpenAPI
 OpenBSD
@@ -352,6 +383,7 @@ Oracle
 ORM
 OSM
 OSS
+OTel
 OTLP
 OVH
 OWASP
@@ -369,6 +401,7 @@ Percona
 Perl
 PGP
 PhantomJS
+PHing
 PHP
 Pinterest
 PIPL
@@ -391,6 +424,7 @@ PyPI
 Python
 PyTorch
 PyYAML
+QoS
 RabbitMQ
 Rackspace
 RAM
@@ -411,6 +445,7 @@ RHEL
 RocketMQ
 ROT13
 RPC
+RSA
 RSS
 Ruby
 Rust
@@ -420,6 +455,7 @@ Samba
 SAML
 SASL
 Sass
+SATA
 Scala
 SCSS
 ScyllaDB
@@ -430,6 +466,7 @@ SDXC
 SELinux
 SemVer
 SEO
+SFDC
 SFTP
 SLA
 Slack
@@ -471,13 +508,16 @@ Symfony
 Tcl
 TCP
 TensorFlow
+Terraform
 Tesla
 Thunderbird
 Thunderbolt
 TikTok
 TLS
+ToC
 TOML
 TOTP
+Traefik
 Travis
 Tripadvisor
 Trustpilot
@@ -496,6 +536,7 @@ Ubuntu
 UbuntuCE
 UDP
 UEFI
+UI
 UML
 Unicode
 Unix
@@ -513,6 +554,7 @@ UTF-16
 UTF-8
 UUID
 UUIDs
+UX
 Vagrant
 Valkey
 Varnish
@@ -525,6 +567,8 @@ VirtualBox
 Visual Studio Code
 VKontakte
 VLAN
+VM
+VMs
 VMware
 VNC
 VPN
@@ -545,6 +589,7 @@ WebSockets
 WebStorm
 Wechat
 Weibo
+WhatsApp
 Wi-Fi
 Wikibase
 Wikidata
@@ -575,4 +620,5 @@ YouTube
 ZFS
 Zipkin
 zlib
+ZooKeeper
 Zsh
